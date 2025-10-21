@@ -58,19 +58,21 @@ python query_idf.py 量子力學
 ```
 .
 ├── README.md                    # 專案說明文件
+├── LICENSE                       # 授權文件
 ├── requirements.txt              # Python 依賴包
 ├── .gitignore                    # Git 忽略文件
+├── setup.sh                      # 環境設定腳本
 ├── build_index.py                # 索引建立主程式
 ├── query_idf.py                  # IDF 查詢工具
 ├── scripts/                      # 輔助腳本
 │   └── download_wiki.py          # 維基百科數據下載工具
-├── docs/                         # 文檔目錄
-│   ├── TECHNICAL.md              # 技術文檔
-│   └── PROJECT_SUMMARY.md        # 專案總結
 ├── data/                         # 數據目錄
 │   └── wiki_article_list_2023_tra.json  # 維基百科數據文件
+├── processed_data/               # 處理後的數據（自動生成）
+│   └── wiki_segmented.jsonl      # 分詞後的維基百科數據
 └── indexes/                      # 索引文件（自動生成）
-    └── inverted_index.pkl        # 序列化的反向索引
+    ├── inverted_index.pkl        # 序列化的反向索引
+    └── pyserini_index/           # Pyserini 索引目錄
 ```
 
 ## 技術架構
@@ -139,21 +141,8 @@ $ python build_index.py
 索引中共有 1208139 篇文檔
 
 詞彙: 蝙蝠俠
-文檔頻率 (DF): 125
-IDF 值: 4.085050
-```
-
-### 查詢其他詞彙
-
-```bash
-$ python query_idf.py 台灣
-正在查詢「台灣」的 IDF 值...
-分詞結果: 台灣
-索引中共有 1208139 篇文檔
-
-詞彙: 台灣
-文檔頻率 (DF): 85642
-IDF 值: 1.149306
+文檔頻率 (DF): 580
+IDF 值: 3.35815
 ```
 
 ## 性能說明
@@ -218,10 +207,6 @@ A: 可以：
 - 使用壓縮（gzip）存儲
 - 只索引關鍵詞彙
 - 定期清理低頻詞
-
-## 技術文檔
-
-詳細技術說明請參考 [技術文檔](docs/TECHNICAL.md)。
 
 ## 依賴項目
 
