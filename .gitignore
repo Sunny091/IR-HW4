@@ -39,7 +39,7 @@ ENV/
 !requirements.json
 data/*.json
 data/wiki_article_list_*.json
-
+processed_data/
 # Index files
 indexes/
 *.pkl
