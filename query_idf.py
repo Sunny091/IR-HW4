@@ -54,7 +54,9 @@ def query_idf(term, index_path='indexes/pyserini_index'):
 
     if df > 0:
         # 計算 IDF 值
-        idf = math.log10(total_docs / df)
+        print(f'"詞彙「{term}」的 DF : {df}"')
+        print(f'"總文檔數 : {total_docs}"')
+        idf = math.log(total_docs / df)
 
         print(f"\n===== 查詢結果 =====")
         print(f"詞彙: {term}")
